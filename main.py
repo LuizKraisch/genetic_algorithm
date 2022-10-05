@@ -12,7 +12,8 @@ import ga
 
 def main():
     # entradas da equação
-    equation_inputs = [15, 10, 10, 5, 8, 17]
+    points = [15, 10, 10, 5, 8, 17]
+    weights = [15, 3, 2, 5, 9, 20]
     # número de pesos a otimizar
     num_weights = 6
 
@@ -32,7 +33,7 @@ def main():
         print(f"Geração: {generation}")
 
         # medir o ‘fitness’ de cada cromossomo na população
-        fitness = ga.cal_pop_fitness(equation_inputs, new_population)
+        fitness = ga.cal_pop_fitness(points, weights, new_population)
 
         print("Valores de fitness:")
         print(fitness)
@@ -59,10 +60,10 @@ def main():
         new_population[0:parents.shape[0], :] = parents
         new_population[parents.shape[0]:, :] = offspring_mutation
 
-        best_result = np.max(np.sum(new_population*equation_inputs, axis=1))
+        best_result = np.max(np.sum(new_population*points, axis=1))
         print(f"Melhor resultado depois da geração {generation}: {best_result}")
 
-    fitness = ga.cal_pop_fitness(equation_inputs, new_population)
+    fitness = ga.cal_pop_fitness(points, weights, new_population)
     best_match_idx = np.where(fitness == np.max(fitness))
 
     print("Melhor solução: ", new_population[best_match_idx, :])

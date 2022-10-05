@@ -2,11 +2,16 @@ import sys
 
 import numpy as np
 
-def cal_pop_fitness(equation_inputs, pop):
+def cal_pop_fitness(points, weights, pop):
     # Cálculo do ‘fitness’ de cada solução na população atual
     # A função ‘fitness’ calcula a soma dos produtos entre cada
     # entrada e seu peso correspondente
-    return np.sum(pop * equation_inputs, axis=1)
+    fitness = np.sum(pop * points, axis=1)
+    fitness_weights = np.sum(pop * weights, axis=1)
+
+    fitness[fitness_weights > 30] = -99999
+
+    return fitness
 
 
 def select_mating_pool(pop, fitness, num_parents):
