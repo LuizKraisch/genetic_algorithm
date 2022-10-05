@@ -2,7 +2,6 @@ import sys
 
 import numpy as np
 
-
 def cal_pop_fitness(equation_inputs, pop):
     # Cálculo do ‘fitness’ de cada solução na população atual
     # A função ‘fitness’ calcula a soma dos produtos entre cada
@@ -52,7 +51,6 @@ def mutation(offspring_crossover, mutation_rate=0.3):
         if np.random.random() < mutation_rate:
             # O valor aleatório a ser adicionado
             random_idx = np.random.randint(0, offspring_crossover.shape[1])
-            random_value = np.random.uniform(-1.0, 1.0, 1)
-            offspring_crossover[idx, random_idx] = offspring_crossover[idx, random_idx] + random_value
+            offspring_crossover[idx, random_idx] = offspring_crossover[idx, random_idx] - 1
 
     return offspring_crossover

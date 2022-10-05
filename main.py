@@ -1,10 +1,18 @@
 import numpy as np
 import ga
 
+# Itens da mochila:
+#
+# Saco de dormir; Peso: 15; Pontos 15
+# Corda; Peso: 3; Pontos: 10
+# Canivete; Peso: 2; Pontos: 10
+# Tocha: Peso: 5; Pontos: 5
+# Garrafa; Peso: 9; Pontos: 8
+# Comida; Peso: 20; Pontos: 17
 
 def main():
     # entradas da equação
-    equation_inputs = [4, -2, 3.5, 5, -11, -4.7]
+    equation_inputs = [15, 10, 10, 5, 8, 17]
     # número de pesos a otimizar
     num_weights = 6
 
@@ -14,7 +22,7 @@ def main():
     pop_size = (sol_per_pop, num_weights)
 
     # População inicial
-    new_population = np.random.uniform(low=-4.0, high=4.0, size=pop_size)
+    new_population = np.random.randint(2, size=pop_size)
 
     # Algoritmo genético
     num_generations = 100
